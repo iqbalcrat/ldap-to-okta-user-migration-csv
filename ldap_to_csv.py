@@ -85,7 +85,7 @@ if __name__ == '__main__':
     wr.writerow(csv_headings)
     with open("ldap_users_list.txt", 'r') as emails: 
         for mailid in emails:
-            ldap_output = subprocess.check_output(['ldapsearch',  '-h', 'extldap-stage.community.veritas.com' , '-p' , '389' ,'-D' , 'uid=authsymaccount,ou=serviceuser,dc=veritas,dc=com' , '-w' , 'cCt9mD#8', '-b', 'dc=veritas,dc=com', 'mail={}'.format(mailid)])  
+            ldap_output = subprocess.check_output(['ldapsearch',  '-h', 'hostname' , '-p' , '389' ,'-D' , 'dn' , '-w' , 'password', '-b', 'tree', 'mail={}'.format(mailid)])  
             output = get_attributes(ldap_output)
             wr.writerow(output)
 
